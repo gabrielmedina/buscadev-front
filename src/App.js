@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import api from './services/api';
+
+import './style.scss';
+
+import DevForm from './components/DevForm';
+import DevList from './components/DevList';
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
+  async function handleAddDev(data) {
+    const response = await api.post('/devs', data);
+    setDevs([...devs, response.data]);
+  }
+
+  useEffect(() => {
+    async function getDevs() {
+      const response = await api.get('/devs');
+      setDevs(response.data);
+    }
+    
+    getDevs();
+    console.log('devs' + devs);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <DevForm onSubmit={handleAddDev} />
+
+      <main className="main">
+        <DevList devs={devs} />
+      </main>
     </div>
   );
 }

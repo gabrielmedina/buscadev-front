@@ -1,0 +1,15 @@
+.devs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.devs__item {
+  margin-bottom: 20px;
+  width: calc(50% - 10px);
+  padding: 20px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 14px 0 rgba(0,0,0,0.02);
+}
