@@ -1,4 +1,4 @@
-## DevSearch WebApp
+# DevSearch WebApp
 
 > WebApp with React to dev search
 
